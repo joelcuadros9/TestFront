@@ -1,0 +1,69 @@
+<div class="example-container">
+  <h1 style="text-align: center">User</h1>
+  <div class="form-container">
+    <form [formGroup]="userForm" (submit)="addOrUpdateUser()">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label> First Name </mat-label>
+        <input matInput formControlName="firstname" >
+      </mat-form-field>
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label> Last Name </mat-label>
+        <input matInput formControlName="lastname" >
+      </mat-form-field>
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label> Email </mat-label>
+        <input matInput formControlName="email" >
+      </mat-form-field>
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label> Username </mat-label>
+        <input matInput formControlName="username" >
+      </mat-form-field>
+      <button mat-raised-button style="margin-left: 20px" color="primary" type="submit"> Save</button>
+    </form>
+  </div>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="firstname">
+      <th mat-header-cell *matHeaderCellDef> First Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.firstname}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="lastname">
+      <th mat-header-cell *matHeaderCellDef> Last Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.lastname}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef> Email </th>
+      <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="username">
+      <th mat-header-cell *matHeaderCellDef> Username </th>
+      <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button color="primary" (click)="setUserForm(element)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="deleteUser(element.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+
+
+
